@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<bean id="hello" name="he1 he2" class="com.sprint.helloword.HelloImp"></bean>	
+		<bean id="bean1" class="com.sprint.bean.HelloImpl2" />
+		<bean id="bean2" class="com.sprint.bean.HelloImpl2">
+			<constructor-arg index="0" value="Hello Spring!" />
+		</bean>
+		<bean id="bean3" class="com.sprint.bean.HelloApiStaticFactory" factory-method="newInstance">
+			<constructor-arg index="0" value="Hello Spring!" />
+		</bean>
+
+		<bean id="instanceFactory" class="com.sprint.bean.HelloApiInstanceFactory" />
+		<bean factory-bean="instanceFactory" factory-method="newInstance">
+			<constructor-arg index="0" value="Hello Spring!" />
+		</bean>
+		<bean id="byIndex" class="com.sprint.bean.HelloImpl3">
+			<constructor-arg index="0" value="0907" />
+			<constructor-arg index="1" value="小刀" />
+		</bean>
+
+		<bean id="byType" class="com.sprint.bean.HelloImpl3">
+			<constructor-arg type="int" value="1997" />
+			<constructor-arg type="java.lang.String" value="土豆" />
+		</bean>
+
+		<bean id="byName" class="com.sprint.bean.HelloImpl3">
+			<constructor-arg name="index" value="5" />
+			<constructor-arg name="message" value="软工" />
+		</bean>
+
+		<bean id="StaticFactoryByIndex" class="com.sprint.bean.DependencyInjectByStaticFactory"
+											factory-method="newInstance">
+			<constructor-arg index="0" value="0907" />
+			<constructor-arg index="1" value="伟大的日子" />
+		</bean>
+
+		<bean id="StaticFactoryByName" class="com.sprint.bean.DependencyInjectByStaticFactory"
+											factory-method="newInstance">
+			<constructor-arg name="index" value="0907" />
+			<constructor-arg name="message" value="伟大的日子" />
+		</bean>
+		<bean id="StaticFactoryByType" class="com.sprint.bean.DependencyInjectByStaticFactory"
+											factory-method="newInstance">
+			<constructor-arg type="int" value="0907" />
+			<constructor-arg type="java.lang.String" value="伟大的日子" />
+		</bean>
+
+		<bean id="InstanceFactory" class="com.sprint.bean.DependencyInjectByInstanceFactory" />
+		<bean id="InstanceByIndex" factory-bean="InstanceFactory" factory-method="newInstance">
+			<constructor-arg index="0" value="999" />
+			<constructor-arg index="1" value="为什么" />
+		</bean>
+
+		<bean id="InstanceByName" factory-bean="InstanceFactory" factory-method="newInstance">
+			<constructor-arg name="index" value="999" />
+			<constructor-arg name="message" value="为什么" />
+		</bean>
+
+		<bean id="InstanceByType" factory-bean="InstanceFactory" factory-method="newInstance">
+			<constructor-arg type="int" value="999" />
+			<constructor-arg type="java.lang.String" value="为什么" />
+		</bean>
+
+		<bean id="setterBean" class="com.sprint.bean.HelloImpl4">
+			<property name="index">
+				<value>1</value>
+			</property>
+			<property name="message" value="come accross" />
+		</bean>
+
+		<bean id="boolean1" class="com.sprint.bean.BooleanDemo">
+			<property name="success" value="0" />
+		</bean>
+</beans>
