@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- constructor - index -->
+	<bean id="constructor-index" class="com.sprint.bean.di.ConstructorDI">
+		<constructor-arg index="0" value="750000" />
+		<constructor-arg index="1" value="42" /> 
+	</bean>	
+	<!-- contrutor - type -->
+	<bean id="constructor-type" class="com.sprint.bean.di.ConstructorDI">
+		<constructor-arg type="int" value="750000" />
+		<constructor-arg type="java.lang.String" value="42" />
+	</bean>
+	<!-- constructor - name -->
+	<bean id="constructor-name" class="com.sprint.bean.di.ConstructorDI">
+		<constructor-arg name="years" value="750000" />
+		<constructor-arg name="ultimateAnswer" value="42" />
+	</bean>
+
+	<bean id="setter" class="com.sprint.bean.di.SetterDI">
+		<property name="years">
+			<value>750000</value>
+		</property>
+
+		<property name="ultimateAnswer">
+			<ref bean="ultimateAnswer" />
+		</property>
+	</bean>
+	<bean id="ultimateAnswer" class="java.lang.String">
+		<constructor-arg index="0" value="42" />
+	</bean>
+</beans>
