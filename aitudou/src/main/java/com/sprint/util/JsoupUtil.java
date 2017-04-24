@@ -30,4 +30,15 @@ public class JsoupUtil {
 		}
 		return document;
 	}
+	
+	public static Document getDocWithPhone(String url, String cookie) {
+		Document document = new Document("http://localhost:3000");
+		try {
+			document = Jsoup.connect(url).userAgent(UA_PHONE).timeout(TIME_OUT).header("Cookie", cookie).ignoreContentType(true).get();
+		} catch (IOException e) {
+			log.info("网址请求失败：" + url);
+		}
+		return document;
+	}
+
 }

@@ -39,7 +39,7 @@ public class QQCrawler {
 			videoDTO.setTitle(title);
 			videoDTO.setImage(image);
 			videoDTO.setValue(url);
-			log.info("title:" + title + ", iamge:" + ",url:" + url);
+			log.info("title:" + title + ", image:" + image +  ",url:" + url);
 			cartoonVideos.add(videoDTO);
 			if (cartoonVideos.size() > 7) {
 				break;

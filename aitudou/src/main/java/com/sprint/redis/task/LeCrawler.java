@@ -68,6 +68,7 @@ public class LeCrawler {
 						url = String.format("http://www.le.com/ptv/vplay/%s.html", matcher.group(1));
 					}
 				}
+
 				videoDTO.setValue(url);
 				log.info("title:" + title + ", image:" + image + ", url:" + url);
 				carouselVideos.add(videoDTO);

@@ -75,3 +75,18 @@ create table category(
 )engine=innodb default charset=utf8;
 
 ```
+
+# home页面及数据显示
+前端利用bootstrap进行页面布局及美化,后台通过后台爬虫,将信息存入到redis.
+![home显示.jpg](http://upload-images.jianshu.io/upload_images/2031765-b858a0ca74d57de8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- thymeleaf使用 : home.html及/home/下所以文件
+- jsoup使用 : redis/task/下的文件
+- redis存储与查询 : redis/下的文件
+
+# 视频播放
+利用开源的组件实现播放, 后台解析链接
+
+![视频播放.jpg](http://upload-images.jianshu.io/upload_images/2031765-599f9ffff00a1b6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
