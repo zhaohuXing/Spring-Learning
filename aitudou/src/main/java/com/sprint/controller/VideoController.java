@@ -18,10 +18,11 @@ public class VideoController {
 	 /* 视频播放页 */
 	@RequestMapping(value = "/play", method = RequestMethod.GET)
   	public String play(HttpServletRequest request, Model model){
-   		String url = request.getParameter("v");
+		String url = request.getParameter("v");
     	url = url.replaceAll("\\?(spm|from).*" , "");
 		Video video = parseManager.parseVideo(url);
    		model.addAttribute("video", video);
+		System.out.println("视频地址:" + video.getPlayUrl());
     	return "play-h5";
   	}
 
