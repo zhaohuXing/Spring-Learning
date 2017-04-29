@@ -1,4 +1,4 @@
-package com.sprint.dao.model;
+package com.sprint.model.domain;
 
 public class Category {
 	private Long id;

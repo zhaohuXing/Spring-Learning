@@ -1,7 +1,7 @@
 package com.sprint.dao.service;
 
-import com.sprint.dao.model.Category;
-import com.sprint.dao.mapper.CategoryMapper;
+import com.sprint.model.domain.Category;
+import com.sprint.model.dao.CategoryDao;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +12,10 @@ import java.util.List;
 public class CategoryService {
 	
 	@Autowired
-	private CategoryMapper categoryMapper;
+	private CategoryDao categoryDao;
 
 	public List<Category> getByUserId(Long userId) {
-		List<Category> categories = categoryMapper.selectByUserId(userId);
+		List<Category> categories = categoryDao.selectByUserId(userId);
 		if (categories == null) {
 			return new ArrayList<>();
 		}

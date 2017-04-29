@@ -1,8 +1,8 @@
 package com.sprint.dao.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sprint.dao.model.User;
-import com.sprint.dao.mapper.UserMapper;
+import com.sprint.model.domain.User;
+import com.sprint.model.dao.UserDao;
 import com.sprint.redis.RedisTokenManager;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 	
 	@Autowired
-	private UserMapper mapper;
+	private UserDao dao;
 
 	@Autowired
 	private RedisTokenManager tokenManager;
@@ -37,16 +37,16 @@ public class UserService {
 	}
 
 	public User getByEmail(String email) {
-		return mapper.selectByEmail(email);
+		return dao.selectByEmail(email);
 	}
 
 	public User completeSignUp(String token) {
 		User user = tokenManager.getUserOfSignUp(token);
 		if (user != null) {
 			if (existEmail(user.getEmail())) {
-				user = mapper.selectByEmail(user.getEmail());
+				user = dao.selectByEmail(user.getEmail());
 			} else {
-				mapper.insert(user);
+				dao.insert(user);
 			}
 			return user;
 		}
@@ -60,6 +60,6 @@ public class UserService {
 		mailService.userValidate(user, token);
 	}
 	private boolean existEmail(String email) {
-		return mapper.selectByEmail(email) != null;
+		return dao.selectByEmail(email) != null;
 	}
 }

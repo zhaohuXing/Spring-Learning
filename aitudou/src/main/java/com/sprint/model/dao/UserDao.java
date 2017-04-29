@@ -1,6 +1,6 @@
-package com.sprint.dao.mapper;
+package com.sprint.model.dao;
 
-import com.sprint.dao.model.User;
+import com.sprint.model.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Insert;
 
 
 @Mapper
-public interface UserMapper {
+public interface UserDao {
 	
 	@Select("select * from user where email = #{email}")
 	User selectByEmail(@Param("email") String email);

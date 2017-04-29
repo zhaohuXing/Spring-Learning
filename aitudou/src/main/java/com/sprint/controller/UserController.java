@@ -1,7 +1,7 @@
 package com.sprint.controller;
 
-import com.sprint.dao.model.Category;
-import com.sprint.dao.model.User;
+import com.sprint.model.domain.Category;
+import com.sprint.model.domain.User;
 import com.sprint.dao.service.CategoryService;
 import com.sprint.dao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

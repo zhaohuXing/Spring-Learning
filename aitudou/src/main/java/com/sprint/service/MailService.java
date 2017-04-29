@@ -1,7 +1,7 @@
 package com.sprint.dao.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sprint.dao.model.User;
+import com.sprint.model.domain.User;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

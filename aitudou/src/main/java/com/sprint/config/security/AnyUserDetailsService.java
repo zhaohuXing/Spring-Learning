@@ -23,7 +23,7 @@ class AnyUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username)
 									throws UsernameNotFoundException {
-		com.sprint.dao.model.User user = userService.getByEmail(username);
+		com.sprint.model.domain.User user = userService.getByEmail(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("用户名不存在");
 		}

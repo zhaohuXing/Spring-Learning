@@ -1,6 +1,6 @@
 package com.sprint.api;
 
-import com.sprint.dao.model.User;
+import com.sprint.model.domain.User;
 import com.sprint.dao.service.UserService;
 import com.sprint.dto.SimpleResponse;
 import com.sprint.util.CheckUtil;

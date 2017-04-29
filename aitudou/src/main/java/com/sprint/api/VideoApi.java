@@ -1,6 +1,6 @@
 package com.sprint.api;
 
-import com.sprint.dao.model.Episode;
+import com.sprint.model.domain.Episode;
 import com.sprint.dto.Video;
 import com.sprint.parse.ParseManager;
 import com.sprint.parse.Parser;
