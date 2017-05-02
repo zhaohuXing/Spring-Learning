@@ -7,19 +7,20 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/carousel.css" />
 		<link rel="stylesheet" href="css/docs.min.css" />
+		<link rel="stylesheet" href="css/index(4).css" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</head>
 	<body style="background-color: #f1f1f1; padding-bottom: 0"> 
 		<div th:insert="~{header :: nav}" />	
-		<div th:insert="~{/home/carousel :: carousel}" />
+		<div th:insert="~{carousel :: carousel}" />
 		<div class="container" style="padding-top: 0">
-			<div th:insert="~{/home/recommend :: recommend}" />
-			<div th:insert="~{/home/tv :: tv}" />
-			<div th:insert="~{/home/movie :: movie}" />
-			<div th:insert="~{/home/cartoon :: cartoon}" />			
+			<div th:insert="~{recommend :: recommend}" />
+			<div th:insert="~{tv :: tv}" />
+			<div th:insert="~{movie :: movie}" />
+			<div th:insert="~{cartoon :: cartoon}" />			
 		</div>		
-		<div th:insert="~{/home/footer :: footer}" />
+		<div th:insert="~{footer :: footer}" />
 		<script type="text/javascript">
 			//换一换/*
 			$(".refresh").click(function() {
