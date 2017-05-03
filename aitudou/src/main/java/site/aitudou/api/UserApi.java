@@ -1,11 +1,13 @@
 package site.aitudou.api;
 
+import site.aitudou.config.security.AnyUser;
 import site.aitudou.model.domain.User;
-import site.aitudou.dao.service.UserService;
+import site.aitudou.service.UserService;
 import site.aitudou.dto.SimpleResponse;
 import site.aitudou.util.CheckUtil;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,29 @@ public class UserApi {
 	@Autowired
 	private UserService service;
 
+
+	@RequestMapping(value = "/user/name", method = RequestMethod.POST)
+	public SimpleResponse updateUserInfo(@AuthenticationPrincipal AnyUser user, HttpServletRequest request) {
+		SimpleResponse response = new SimpleResponse();
+		String nickname = request.getParameter("nickname");
+		if (!CheckUtil.checkNickname(nickname)) {
+			response.setCode(200);
+			response.setMessage("修改失败, 参数不正确");
+			return response;
+		}
+		System.out.println(user.getId() + ":" + nickname );
+
+		if (service.updateNickname(user.getId(), nickname)) {
+			System.out.println("执行了?");
+			response.setCode(100);
+			return response;
+		}
+
+		response.setCode(200);
+		response.setMessage("修改失败, 参数不正确");
+		return response;
+
+	}
 	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
 	public SimpleResponse signUp(HttpServletRequest request) {
 		User user = createUser(request);

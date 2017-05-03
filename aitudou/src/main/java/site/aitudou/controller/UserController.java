@@ -2,8 +2,8 @@ package site.aitudou.controller;
 
 import site.aitudou.model.domain.Category;
 import site.aitudou.model.domain.User;
-import site.aitudou.dao.service.CategoryService;
-import site.aitudou.dao.service.UserService;
+import site.aitudou.service.CategoryService;
+import site.aitudou.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

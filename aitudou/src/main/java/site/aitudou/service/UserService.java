@@ -1,4 +1,4 @@
-package site.aitudou.dao.service;
+package site.aitudou.service;
 
 import com.alibaba.fastjson.JSONObject;
 import site.aitudou.model.domain.User;
@@ -25,6 +25,10 @@ public class UserService {
 
 	@Autowired
 	private MailService mailService;
+
+	public boolean updateNickname(Long id, String nickname) {
+		return dao.updateNicknameById(id, nickname) > 0;
+	}
 
 	public boolean signUp(User user) {
 		String email = user.getEmail();

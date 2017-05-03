@@ -1,6 +1,6 @@
 package site.aitudou.config.security;
 
-import site.aitudou.dao.service.UserService;
+import site.aitudou.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,9 @@ class AnyUserDetailsService implements UserDetailsService{
 		}
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		return new User(username, user.getPassword(), authorities);
+		AnyUser anyUser = new AnyUser(username, user.getPassword(), authorities);
+		anyUser.setId(user.getId());
+		anyUser.setNickname(user.getNickname());
+		return anyUser;
 	}
 }

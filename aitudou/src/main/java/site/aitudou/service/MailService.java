@@ -1,4 +1,4 @@
-package site.aitudou.dao.service;
+package site.aitudou.service;
 
 import com.alibaba.fastjson.JSONObject;
 import site.aitudou.model.domain.User;
