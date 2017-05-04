@@ -5,6 +5,7 @@ import site.aitudou.service.CategoryService;
 import site.aitudou.dto.SimpleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,4 +32,15 @@ public class CategoryApi {
 		return response;
 	}
 
+	@RequestMapping(value = "/user/category/delete/{categoryId}", method = RequestMethod.GET)
+	public SimpleResponse deleteCategory(@AuthenticationPrincipal AnyUser user, @PathVariable("categoryId") Long categoryId) {
+		SimpleResponse simpleResponse = new SimpleResponse();
+		System.out.println("testsssss");
+		if (service.deleteByUserIdAndId(user.getId(), categoryId)) {
+			simpleResponse.setCode(100);
+			return simpleResponse;
+		}
+		simpleResponse.setCode(200);
+		return simpleResponse;
+	}
 }

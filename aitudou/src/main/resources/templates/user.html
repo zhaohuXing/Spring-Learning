@@ -125,38 +125,42 @@
 				</div>
 			</div>
 
-			<!-- 删除模态框 -->
-			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        		<div class="modal-dialog">
-        		    <div class="modal-content">
-        		        <div class="modal-header">
-        		            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-        		                &times;
-        		            </button>
-        		            <h4 class="modal-title">
-        		                删除分类
-        		            </h4>
-        		        </div>
-        		        <div class="modal-body" style="text-align: center" id="deleteBody">
-        		            <p>
-        		                确定删除 <b style="color: red" id="name"></b> ?
-        		            </p>
-        		        </div>
-        		        <div class="modal-footer">
-        		            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-        		            </button>
-        		            <button type="button" class="btn btn-danger" id="deleteCategory">
-        		                确定
-        		            </button>
-        		        </div>
-        		    </div>
-        		</div>	
-			</div>
+			<!-- 删除 模态框 -->
+    		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    		    <div class="modal-dialog">
+    		        <div class="modal-content">
+    		            <div class="modal-header">
+    		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    		                    &times;
+    		                </button>
+    		                <h4 class="modal-title">
+    		                    删除分类
+    		                </h4>
+    		            </div>
+    		            <div class="modal-body" style="text-align: center" id="deleteBody">
+    		                <p>
+    		                    确定删除 <b style="color: red" id="name"></b> ?
+    		                </p>
+    		            </div>
+    		            <div class="modal-footer">
+    		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+    		                </button>
+    		                <button type="button" class="btn btn-danger" id="deleteCategory">
+    		                    确定
+    		                </button>
+    		            </div>
+    		        </div>
+    		    </div>
+    		</div>
+   		    <!-- End 删除 模态框 -->	
 		</div>
 	<script style="text/javascript">
 	
 		var token = $("meta[name='_csrf']").attr("content");
 		var api;
+		function deleteApi(id) {
+			return "/user/category/delete/" + id;
+		}
 		$("document").ready(function () {
 			/*修改个人信息*/
 			$("#updateUserInfo").click(function () {
@@ -197,7 +201,22 @@
 				var name = $(this).parent().find("h4").eq(0).text();
 				$("name").text(name);
 				api = deleteApi($(this).val());
+				console.log(name + api);
 			});	
+
+			/*删除分类*/
+			$("#deleteCategory").click(function () {
+				$.get(api, function (data) {
+					if (data.code == 100) {
+						window.location.reload();
+					} else {
+						var info = $("<p id=\"info\" style=\"color:red;margin-top: 10px;\"></p>");
+						info.text("删除失败, 请刷新页面后重试!");
+						$("#deleteBody").append(info);
+					}
+				});
+			});	
+				
 		});
 		
 	</script>

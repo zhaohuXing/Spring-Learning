@@ -1,6 +1,7 @@
 package site.aitudou.model.dao;
 
 import site.aitudou.model.domain.Category;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,4 +15,7 @@ public interface CategoryDao {
 
 	@Insert("insert into category(user_id, name, logo, md5)values(#{userId}, #{name}, #{logo}, #{md5})")
 	int insert(Category category);
+
+	@Delete("delete from category where id = #{id} and user_id = #{userId}")
+	int delete(@Param("id") Long id, @Param("userId") Long userId);
 }
