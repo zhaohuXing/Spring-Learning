@@ -34,6 +34,14 @@ public class CategoryService {
 		
 	}
 
+	public Category getById(Long id, Long userId) {
+		Category category = categoryDao.selectByIdAndUserId(id, userId);
+		if (category == null) {
+			return null;
+		}
+		return category;
+	}
+
 	public List<Category> getByUserId(Long userId) {
 		List<Category> categories = categoryDao.selectByUserId(userId);
 		if (categories == null) {

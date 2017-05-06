@@ -16,9 +16,6 @@
                     <li th:class="${navIndex} == 1 ? 'active' : ''">
                         <a href="/s">搜索</a>
                     </li>
-                    <li th:class="${navIndex} == 2 ? 'active' : ''">
-                        <a href="/video">高级</a>
-                    </li>
                 </ul>
                 <div class="navbar-form navbar-right">
                     <a class="btn btn-danger" th:href="@{/user}" th:if="${#httpServletRequest.remoteUser}">个人中心</a>

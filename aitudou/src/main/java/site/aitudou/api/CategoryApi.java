@@ -3,6 +3,7 @@ package site.aitudou.api;
 import site.aitudou.config.security.AnyUser;
 import site.aitudou.service.CategoryService;
 import site.aitudou.dto.SimpleResponse;
+import site.aitudou.model.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 @RestController
 public class CategoryApi {
 
@@ -42,5 +44,10 @@ public class CategoryApi {
 		}
 		simpleResponse.setCode(200);
 		return simpleResponse;
+	}
+
+	@RequestMapping(value = "/user/categories", method = RequestMethod.GET)
+	public List<Category> list(@AuthenticationPrincipal AnyUser user) {
+		return service.getByUserId(user.getId()); 
 	}
 }
