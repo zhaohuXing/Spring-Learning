@@ -20,12 +20,16 @@ ApplicationContext, AnnotationConfigApplicationContext, ClassPathXmlApplicationC
 
 ## Spring-Bean之Dependencies and configuration in detail(170421)
 - src/main/java/com/sprint/bean/details/下所以文件
-- 
-## Spring-Bean之Dependencies and configuration in detail(170421)
-- src/main/java/com/sprint/bean/details/下所以文件
 - src/main/resources/config/spring-bean-detail.xml
 - src/test/java/com/sprint/bean/details/
 
 ![bean细节依赖.jpg](http://upload-images.jianshu.io/upload_images/2031765-b044d6aa74b37bed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## Spring-Bean之Depends-On(170508)
+- src/main/java/com/sprint/bean/dependsOn/下所以文件
+- src/main/resources/config/spring-bean-dependson.xml
+- src/test/java/com/sprint/bean/dependsOn/
+
+指定初始化,销毁顺序。depends-on值的bean要先初始化，早于被指定的Bean的,并且晚于被指定的Bean销毁.
 
 
