@@ -6,8 +6,8 @@
 		<!-- depends On -->
 		<bean id="resourceBean" class="com.sprint.bean.dependsOn.ResourceBean"
 				init-method="init" destroy-method="destroy">
+			<!-- 这里value是指linux系统下的本地文件，如果需要请自行替换-->
 			<property name="file" value="/home/sprint/xxx/test.txt" />
-
 		</bean>
 		<bean id="dependentBean" class="com.sprint.bean.dependsOn.DependentBean"
 			init-method="init" destroy-method="destroy" depends-on="resourceBean">

@@ -32,4 +32,8 @@ ApplicationContext, AnnotationConfigApplicationContext, ClassPathXmlApplicationC
 
 指定初始化,销毁顺序。depends-on值的bean要先初始化，早于被指定的Bean的,并且晚于被指定的Bean销毁.
 
+## 省略知识点
+- Spring-Bean之Lazy-initialized beans
+- Spring-Bean之Autowiring collaborators
+- Spring-Bean之Method injection
 

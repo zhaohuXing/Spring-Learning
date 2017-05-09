@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- 
+			ByNameAutowired中存在String name属性，并存在setName(String name)方法,
+			想通过基于xml的自动装配进行配置
+			定义一个String的常量名字为name的Bean。
+			之后通过autowire自动装配，但是结果属性name == null ,不解
+		-->
+		
+		<bean id="name" class="java.lang.String">
+			<constructor-arg index="0" value="小白" />				
+		</bean>
+		<bean id="byName" class="com.sprint.bean.autowired.ByNameAutowired" autowire="byName" />
+		
+		<!--
+			因ByNameAutowired中存在setHelloApi(HelloApi helloApi)方法, 
+			会自动寻找helloApi的bean并注入。
+		-->
+		<bean id="helloApi" class="com.sprint.bean.autowired.HelloApi" />
+		<bean id="byName1" class="com.sprint.bean.autowired.ByNameAutowired" autowire="byName" />
+			
+</beans>
