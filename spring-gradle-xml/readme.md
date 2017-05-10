@@ -37,3 +37,9 @@ ApplicationContext, AnnotationConfigApplicationContext, ClassPathXmlApplicationC
 - Spring-Bean之Autowiring collaborators
 - Spring-Bean之Method injection
 
+## Spring-Bean之Scope
+- singleton　一般默认single, 保证Spring只有一个实例对象，不仅缓存对象而且还缓存Bean,将单例对象放入缓存池里。
+- prototype 每次都会重新获取一个全新的Bean
+- 等用到再说吧
+
+
