@@ -27,13 +27,24 @@ public class Exposer {
 		this.end = end;
 	}
 
+	@Override
+	public String toString() {
+		return "exposed:" + exposed
+			+ ", md5:" + md5
+			+ ", seckillId:" + seckillId
+			+ ", now:" + now
+			+ ", start:" + start
+			+ ", end:" + end;
+	}
+
 	public void setExposed(boolean exposed) {
 		this.exposed = exposed;
 	}
 
-	public boolean getExposed() {
+	public boolean isExposed() {
 		return exposed;
 	}
+
 
 	public void setMd5(String md5) {
 		this.md5 = md5;

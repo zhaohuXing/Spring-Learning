@@ -16,6 +16,7 @@ import org.seckill.exception.SeckillException;
 import org.seckill.service.SeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
@@ -69,9 +70,10 @@ public class SeckillServiceImpl implements SeckillService {
 		return md5;
 	}
 	@Override
+	@Transactional
 	public SeckillExecution executeSeckill(long seckillId, long userPhone, String md5)
 	throws RepeatKillException, SeckillCloseException, SeckillException {
-		if (md5 == null || md5.equals(getMD5(seckillId))) {
+		if (md5 == null || !md5.equals(getMD5(seckillId))) {
 			throw new SeckillException("seckill data rewrite");
 		}
 
