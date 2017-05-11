@@ -2,4 +2,19 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"  
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">  
+	<!-- 配置DispatherServlet -->
+	<servlet>
+		<servlet-name>seckill-dispather</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatherServlet</servlet-class>
+	</servlet>
+
+	<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-*.xml</param-value>
+	</init-param>
+
+	<servlet-mapping>
+		<servlet-name>seckill-dispather</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 </web-app> 
