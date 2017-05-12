@@ -28,7 +28,7 @@ public class SeckillController {
 	
 	@Autowired
 	private SeckillService seckillService;
-
+	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Model model) {
 		//获取秒杀列表
@@ -39,6 +39,7 @@ public class SeckillController {
 
 	@RequestMapping(value ="/{seckillId}/detail", method = RequestMethod.GET)
 	public String detail(@PathVariable("seckillId") Long seckillId, Model model) {
+		System.out.println("seckillId: " + seckillId);
 		if (seckillId == null) {
 			return "redirect:/seckill/list";
 		}
