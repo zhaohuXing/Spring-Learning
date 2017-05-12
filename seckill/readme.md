@@ -11,3 +11,6 @@
 ## thymeleaf之js中引用变量值
 - <script th:inline="javascript" ></script>
 - [[${obj.property}]]
+
+## 计时器
+- 文件版本不一致,造成的

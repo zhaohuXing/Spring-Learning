@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import java.util.Date;
 import java.util.List;
 @Controller
 @RequestMapping("seckill")
@@ -84,16 +85,23 @@ public class SeckillController {
 			return new SeckillResult<SeckillExecution>(true, execution);
 		} catch (RepeatKillException e) {
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.REPEAT_KILL);
-			return new SeckillResult<SeckillExecution>(false, execution);
+			return new SeckillResult<SeckillExecution>(true, execution);
 		} catch (SeckillCloseException e) {
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.END);
-			return new SeckillResult<SeckillExecution>(false, execution);
+			return new SeckillResult<SeckillExecution>(true, execution);
 		}
 		catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.INNER_ERROR);
-			result = new SeckillResult<SeckillExecution>(false, execution);
+			result = new SeckillResult<SeckillExecution>(true, execution);
 		}
 		return result;
+	}
+
+	@RequestMapping(value = "/time/now", method = RequestMethod.GET)
+	@ResponseBody
+	public SeckillResult<Long> time() {
+		Date now = new Date();
+		return new SeckillResult(true, now.getTime());
 	}
 }
