@@ -7,11 +7,12 @@ var seckill = {
 		now : function() {
 			return '/seckill/seckill/time/now';
 		},
+		//我没改吗？
 		exposer : function(seckillId) {
-			return '/seckill/' + seckillId + '/exposer';
+			return '/seckill/seckill/' + seckillId + '/exposer';
 		},
 		execution : function(seckillId, md5) {
-			return '/seckill/'+ seckillId + '/'+ md5 + '/execution';
+			return '/seckill/seckill/'+ seckillId + '/'+ md5 + '/execution';
 		}
 	},
 
@@ -53,7 +54,7 @@ var seckill = {
 								//3.显示秒杀结果
 								node.html('<span class="label label-success">' + stateInfo + '</span>');
 							}
-						})
+						}, "json")
 					});
 					node.show();
 				} else {
@@ -69,7 +70,7 @@ var seckill = {
 				console.log('result: ' + result)
 			}
 
-		});
+		}, "json");
 	},
 
 	//倒计时
