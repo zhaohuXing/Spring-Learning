@@ -70,7 +70,15 @@ public class ResourceTest {
 
 	@Test
 	public void testClasspathResourceByClass() throws IOException {
+		//为什么不输出呢
+		Class clazz = this.getClass();
+		Resource resource = new ClassPathResource("test.txt", clazz);
+		if (resource.exists()) {
+			dumpStream(resource);
+		}
+		Assert.assertEquals(false, resource.isOpen());
 	}
+
 
 	private void dumpStream(Resource resource) {
 		InputStream is = null;

@@ -7,6 +7,12 @@ repositories {
 }
 
 dependencies {
+	compile 'org.springframework:spring-aop:4.3.6.RELEASE'
+	// https://mvnrepository.com/artifact/cglib/cglib
+	compile group: 'cglib', name: 'cglib', version: '3.2.0'
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+	compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.10'
+
 	compile 'org.springframework:spring-core:4.3.6.RELEASE'
 	compile 'org.springframework:spring-beans:4.3.6.RELEASE'
 	compile 'org.springframework:spring-context:4.3.6.RELEASE'

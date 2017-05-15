@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop  
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 一个service类 -->
+	<bean id="helloWorldService" class="com.sprint.aop.HelloWorldService" />		
+
+	<!-- 定义一个没有切入点的切面 -->
+	<bean id="aspect" class="com.sprint.aop.HelloWorldAspect" />
+
+	<!-- Aop设置 -->
+	<aop:config>
+		<!-- 完善切面, 加入切入点 -->
+		<aop:aspect ref="aspect">
+			<aop:pointcut id="pointcut" expression="execution(* com.sprint.aop..*.*(..))" />
+			<!-- 在该pointcut下的方法执行前，先执行切面中的beforeAdvice方法 -->
+			<aop:before pointcut-ref="pointcut" method="beforeAdvice" />
+
+			<!-- 在该pointcut下的方法执行后, 执行切面中的afterFinallyAdvice方法 -->
+			<aop:after pointcut="execution(* com.sprint.aop..*.*(..))" method="afterFinallyAdvice" />
+		</aop:aspect>
+	</aop:config>
+
+	<!-- 
+		梳理下Aop中的概念：
+			关注点：我们所关心的东西，例如：日志
+			横切关注点：需求功能的一部分,例如：一个功能，需要先记录日志，再执行支付操作。那么日志，支付，这两个是横切关注点。
+			Aop的作用：用于横切关注点的分离和将横切关注点注入到系统			
+			Aspect: 横切关注点模块化就是一个切面, 切面由Joint point 和 Pointcut, 横切关注点的一系列动作(方法).
+			Joint point : 代码(方法)在哪里执行
+			Pointcut : 代码(方法)在哪里执行的集合
+	-->
+</beans>

@@ -42,4 +42,17 @@ ApplicationContext, AnnotationConfigApplicationContext, ClassPathXmlApplicationC
 - prototype 每次都会重新获取一个全新的Bean
 - 等用到再说吧
 
+## 资源的加载
+- src/main/java/com/sprint/resource/
+- 等用到再来深入学习吧
 
+## spel语法(没用过)
+- 框架这东西真的需要项目来驱动
+
+## Aop
+- 使用Schema-based AOP support 需要的依赖:spring-aop, cglib,aspectjweaver 
+	- src/main/java/com/sprint/aop/
+	- src/main/resources/config/spring-aop.xml用注释陈述了一些有关aop的概念
+	- src/test/java/com/sprint/aop/
+
+hello world
