@@ -23,9 +23,21 @@
 			<aop:pointcut id="pointcut" expression="execution(* com.sprint.aop..*.*(..))" />
 			<!-- 在该pointcut下的方法执行前，先执行切面中的beforeAdvice方法 -->
 			<aop:before pointcut-ref="pointcut" method="beforeAdvice" />
+			<!-- 定义前置通知，（带参数)-->
+			<aop:before pointcut="execution(* com.sprint.aop..*.sayBefore(..)) and args(param)" 
+				method="beforeAdvice(java.lang.String)" arg-names="param" />
+			<!-- 定义后置返回通知 -->
+			<aop:after-returning pointcut="execution(* com.sprint.aop..*.sayAfterReturing(..))"
+								method="afterReturningAdvice" arg-names="retVal" returning="retVal" />
 
+			<!-- 定义后置异常通知 -->
+			<aop:after-throwing pointcut="execution(* com.sprint.aop..*.sayAfterThrowing(..))"
+							method="afterThrowingAdvice" arg-names="exception" throwing="exception" />
 			<!-- 在该pointcut下的方法执行后, 执行切面中的afterFinallyAdvice方法 -->
 			<aop:after pointcut="execution(* com.sprint.aop..*.*(..))" method="afterFinallyAdvice" />
+
+			<!-- 定义环绕通知 -->
+			<aop:around pointcut="execution(* com.sprint.aop..*.*(..))" method="aroundAdvice" />
 		</aop:aspect>
 	</aop:config>
 
@@ -37,5 +49,31 @@
 			Aspect: 横切关注点模块化就是一个切面, 切面由Joint point 和 Pointcut, 横切关注点的一系列动作(方法).
 			Joint point : 代码(方法)在哪里执行
 			Pointcut : 代码(方法)在哪里执行的集合
+
+		基于Schema的Aop：
+			通过xml来配置aop，使用到的标签（定义有序）：
+			<aop:config>
+				<aop:pointcut id="" expression="" />
+				<aop:adviser />  存在侵入性，不推荐使用
+				<aop:aspect ref="xxBean">
+					<aop:pointcut id="" expression="" />
+					<aop:before pointcut-ref="" method="" args-names="方法中参数名列表" />
+					省略其他通知...
+				</aop:aspect>
+			</aop:config>
+
+			标签说明：
+				<aop:config /> 用于配置AOP，父节点
+				<aop:pointcut /> 用于定义切点,"代码在哪里执行", 作为<aop:config />子节点时,该切点可在所有的切面中使用，如果作为<aop:aspect />子节点时,该节点仅在该切面中使用.
+				既然可以使用pointcut的Bean,那么也可以使用匿名的	切点Bean,栗子见如上配置文件
+				<aop:aspect />用于定义切面, ref属性来引用切面支持Bean, 通缩的说:给没有加入切入点的Bean，增加切入点
+				切面中的通知：作为<aop:aspect /> 的子标签:
+				<aop:before /> 前置通知，作用方法前
+				<aop:after-returning /> 后置返回通知，作用方法返回后
+				<aop:after-throwing /> 后置异常通知，作用方法抛出异常后
+				<aop:after /> 后置通知，作用于方法返回
+				<aop:around /> 环绕通知
+				<aop:delare-parents /> 
 	-->
+
 </beans>

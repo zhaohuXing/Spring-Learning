@@ -52,7 +52,24 @@ ApplicationContext, AnnotationConfigApplicationContext, ClassPathXmlApplicationC
 ## Aop
 - 使用Schema-based AOP support 需要的依赖:spring-aop, cglib,aspectjweaver 
 	- src/main/java/com/sprint/aop/
-	- src/main/resources/config/spring-aop.xml用注释陈述了一些有关aop的概念
-	- src/test/java/com/sprint/aop/
+	- src/main/resources/config/spring-aop.xml用注释陈述了一些有关aop的概念,以及使用
+	- src/test/java/com/sprint/aop/ 记录过程中出现的问题
 
-hello world
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
