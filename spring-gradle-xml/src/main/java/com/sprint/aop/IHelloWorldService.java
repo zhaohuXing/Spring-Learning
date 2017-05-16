@@ -6,4 +6,5 @@ public interface IHelloWorldService {
 	public boolean sayAfterReturning();
 	public void sayAfterThrowing();
 	public void sayAround(String param);
+	public void sayAdvisorBefore(String param);
 }

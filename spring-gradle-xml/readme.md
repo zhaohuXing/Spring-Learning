@@ -55,6 +55,12 @@ ApplicationContext, AnnotationConfigApplicationContext, ClassPathXmlApplicationC
 	- src/main/resources/config/spring-aop.xml用注释陈述了一些有关aop的概念,以及使用
 	- src/test/java/com/sprint/aop/ 记录过程中出现的问题
 
+- 使用@AspectJ注解，需要依赖:spring-aop, aspectjweaver.
+	- src/main/java/com/sprint/aop/HelloWorldAspect2.java 里面配置aop及各种通知
+	- src/main/resources/config/spring-aop-aspectj.xml
+	- src/test/java/com/sprint/aop/ 
+
+	
 
 
 

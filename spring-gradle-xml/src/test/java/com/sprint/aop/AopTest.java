@@ -14,7 +14,7 @@ public class AopTest {
 		//为啥不显示呢?
 		helloWorldService.sayAfterReturning();
 
-		helloWorldService.sayAfterThrowing();
+//		helloWorldService.sayAfterThrowing();
 		
 		//为啥报错呢?
 		helloWorldService.sayAround("haha");

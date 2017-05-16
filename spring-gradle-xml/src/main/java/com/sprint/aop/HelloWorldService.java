@@ -28,4 +28,9 @@ public class HelloWorldService implements IHelloWorldService {
 	public void sayAround(String param) {
 		System.out.println("===========around param:" + param);
 	}
+
+	@Override
+	public void sayAdvisorBefore(String param) {
+		System.out.println("=========advisor param: " + param);
+	}
 }
