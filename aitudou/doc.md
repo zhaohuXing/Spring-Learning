@@ -203,6 +203,9 @@ public String getTokenOfSignUp(User user) {
 利用爬虫(Jsoup)的Element(css选择器)，来锁定需要获取的信息的样式及属性，从而拿到想要的数据，存储到自己的类中, 并存储到redis中，
 通过@EnableScheduing,@Scheduled开启计划，执行爬取内容，将内容从redis中取出并渲染到页面。
 
+
+![css4.jpg](http://upload-images.jianshu.io/upload_images/2031765-1df8bae26f9c34ac.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![css.jpg](http://upload-images.jianshu.io/upload_images/2031765-213f927590ebe210.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![css.jpg](http://upload-images.jianshu.io/upload_images/2031765-745b69b78b64c242.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
