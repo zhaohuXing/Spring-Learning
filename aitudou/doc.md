@@ -124,3 +124,111 @@ $.post('/url', data)
 
 前端通过模态框，创建新建分类，之后可以在里面存放自己喜欢的视频，可会记录观看的次数，咱讲究对称性，有创建有删除嘛，用户可以进入分类中删除视频，前提是先私藏后，不然，没有视频，你删除个鬼呀，可以直接删除分类。
 user.html, CategoryX
+
+
+新版：
+
+>系统模块介绍
+- 登录注册模块
+- 主页面显示
+- 视频播放
+- 视频搜索
+- 个人管理
+
+## 登录注册模块
+采用Bootstrap网站上的登录注册模板，并利用其常用的数据校验。
+![login.jpg](http://upload-images.jianshu.io/upload_images/2031765-61e876d28042aa03.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+![register.jpg](http://upload-images.jianshu.io/upload_images/2031765-55d60ed1f0a5916e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+![email.jpg](http://upload-images.jianshu.io/upload_images/2031765-664cfae1fb37cd9c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+这个模块的亮点就是：采用邮箱校验，防止恶意注册。
+实现原理：
+当用户请求login路径时，这时服务器会返回客户端一个token, 防止csrf（跨站请求攻击）攻击（唯一标识客户端发起的请求）。用户在注册时，将注册数据，token作为参数返回给服务器，服务器根据token值，来判断是否是同一客户端发来的请求，（开发者不用处理），如果用户存在，则返回“邮箱已存在的信息”，反之，后台用户信息生成一个token, 将起token存储到redis(NoSql数据库)中, 设定时间12小时，返回给用户“需要在12小时内完成注册”，邮件内容，主要有由该用户token组成
+的url路径。
+邮箱发送：
+```
+public void userValidate(User user, String token) {
+		MimeMessage mailMessage = mailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true, "GBK");
+			helper.setFrom(from);
+			helper.setTo(user.getEmail());
+			helper.setSubject(TITLE_SIGN_UP);
+			String message = String.format(CONTENT, user.getNickname(), link+token, link+token, user.getEmail());
+			helper.setText(message, true);
+			mailSender.send(mailMessage);
+		} catch (MessagingException e) {
+			log.error("发送邮件失败：User:" + JSONObject.toJSONString(user) + ", Token: " + token);
+		} 
+	}	
+```
+Redis存储获取token:
+```
+//用户注册时，存储的token
+public String getTokenOfSignUp(User user) {
+		String token = UUID.randomUUID().toString();
+		String value = JSONObject.toJSONString(user);
+		// 设置Key-Value存入redis
+		stringRedisTemplate.opsForValue().set(signUpPrefix + token, value);
+		//设置Key的生存周期
+		stringRedisTemplate.expire(signUpPrefix + token, 12, TimeUnit.HOURS);
+		return token;
+	} 
+
+//验证token
+	public User getUserOfSignUp(String token) {
+		//通过key获取redis中的value
+		String value = stringRedisTemplate.opsForValue().get(signUpPrefix + token);
+		if (value == null) {
+			log.info("用户注册, Token已失效：" + token);
+			return null;
+		}
+		return JSONObject.parseObject(value, User.class);
+	}
+```
+
+## 主页面显示
+通过后台爬虫，爬取乐视和腾讯视频上的视频，显示回页面。页面显示采用thymeleaf模板。
+
+![index.jpg](http://upload-images.jianshu.io/upload_images/2031765-72e5705f10379d75.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+实现原理:
+布局采用bootstrap样式来美化页面，特效全部采用其插件。
+利用爬虫(Jsoup)的Element(css选择器)，来锁定需要获取的信息的样式及属性，从而拿到想要的数据，存储到自己的类中, 并存储到redis中，
+通过@EnableScheduing,@Scheduled开启计划，执行爬取内容，将内容从redis中取出并渲染到页面。
+
+
+![css.jpg](http://upload-images.jianshu.io/upload_images/2031765-745b69b78b64c242.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## 视频播放
+视频播放页面，分为三部分：视频播放，视频选集，视频来源。
+视频播放采用H5特性<video />通过如上爬虫，来爬取视频的源地址，之后放到该项目中进行播放。样式布局，主题部分采用BootStrap CSS样式，逻辑控制采用js.
+
+![video.jpg](http://upload-images.jianshu.io/upload_images/2031765-ed3d804a77978d01.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## 视频搜索
+亮点：利用爬虫的特性，连接到乐视存在搜索栏的地址，通过分析其页面中搜索框中的关键字，完成爬出信息操作。
+
+
+![search.jpg](http://upload-images.jianshu.io/upload_images/2031765-7deed4ad77b24d4d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## 个人管理
+- 个人信息管理
+- 个人视频管理
+
+个人信息管理目前支持修改昵称。
+
+![updateName.jpg](http://upload-images.jianshu.io/upload_images/2031765-e1f5abb1f23e8a75.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+个人视频管理
+新建视频分类，用户可以在观看视频时，私藏自己喜欢的视频到分类中。随之，视频的删除，与浏览量，这里使用了事务来保证其原子性。
+样式采用Bootstrap的插件。(css样式)
+
+![category.jpg](http://upload-images.jianshu.io/upload_images/2031765-056d858a449b88c7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
