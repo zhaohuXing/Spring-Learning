@@ -205,7 +205,6 @@ public String getTokenOfSignUp(User user) {
 
 
 ![css.jpg](http://upload-images.jianshu.io/upload_images/2031765-745b69b78b64c242.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 ## 视频播放
 视频播放页面，分为三部分：视频播放，视频选集，视频来源。
 视频播放采用H5特性<video />通过如上爬虫，来爬取视频的源地址，之后放到该项目中进行播放。样式布局，主题部分采用BootStrap CSS样式，逻辑控制采用js.
