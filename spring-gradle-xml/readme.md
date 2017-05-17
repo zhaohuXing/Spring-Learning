@@ -62,6 +62,25 @@ ApplicationContext, AnnotationConfigApplicationContext, ClassPathXmlApplicationC
 
 	
 
+## Spring之事务
+Spring框架支持事务管理的核心是事务管理器抽象，对于不同的数据访问框架通过实现策略接口PlatformTransactionManager,从而能支持各种数据访问框架的事务管理。<br />
+Spring中提供许多内置的事务管理器：如：`org.springframework.jdbc.datasource.DataSourceTransactionManager`提供SpringJdbc, MyBatis框架的事务处理<br />
+JpaTransactionManager, HibernateTransactionManager分别处理Jpa, hibernate的事务处理
+
+- 本地事务(一个数据库)
+- 分布式事务(多个数据库，多个源)
+
+
+事务配置实现
+- 编程式实现事务管理
+- 声明式实现事务管理
+
+声明式实现事务管理
+- 基于xml: src/main/resources/config/spring-transaction-xml.xml 详情介绍
+- 基于Annotation: src/main/resources/config/spring-transaction-annotation.xml 详情介绍
+
+个人偏向基于Annotation的事务管理配置
+
 
 
 
