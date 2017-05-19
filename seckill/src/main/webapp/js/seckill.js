@@ -7,7 +7,7 @@ var seckill = {
 		now : function() {
 			return '/seckill/seckill/time/now';
 		},
-		//我没改吗？
+
 		exposer : function(seckillId) {
 			return '/seckill/seckill/' + seckillId + '/exposer';
 		},
