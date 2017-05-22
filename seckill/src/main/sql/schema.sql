@@ -35,7 +35,7 @@ values
 create table success_seckill (
 	seckill_id bigint not null auto_increment comment '商品库存id',
 	user_phone bigint not null comment '用户手机号',
-	state tinyint not null default -1 comment '状态标识,'
+	state tinyint not null default -1 comment '状态标识,',
 	create_time timestamp not null comment '创建时间',
 	primary key(seckill_id, user_phone),
 	key idx_create_time(create_time)
